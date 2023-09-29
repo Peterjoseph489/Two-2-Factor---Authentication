@@ -4,6 +4,7 @@ const cors = require('cors');
 const fileUpload = require('express-fileupload')
 const express = require('express');
 const morgan = require("morgan");
+const router = require("./routes/userRoute");
 const PORT = process.env.PORT
 
 const app = express();
@@ -22,6 +23,8 @@ app.use(fileUpload({
     useTempFiles: true
 }))
 app.use(morgan("dev"));
+app.use("/api", router);
+// app.use("/api", wallet);
 
 
 app.get('/', (req, res)=>{
@@ -30,7 +33,7 @@ res.send('Welcome to my Platform, Expect to see more...!!!')
 
 
 app.listen(PORT, ()=>{
-    console.log('Server is connected')
+    console.log('Server is connected on Port: ' + PORT)
 })
 
 

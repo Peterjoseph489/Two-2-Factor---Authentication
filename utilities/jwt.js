@@ -20,6 +20,7 @@ const decodeToken = async (token) => {
             user = await User.findById(data.userID)
         }
     })
+    // console.log(user)
     return user
 };
 

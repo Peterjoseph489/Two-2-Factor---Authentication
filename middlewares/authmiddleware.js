@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../model/userModel");
+const User = require("../models/userModel");
 const { decodeToken } = require("../utilities/jwt");
 const { otpAuth } = require("../utilities/authenticator");
 
@@ -13,9 +13,10 @@ const userAuth = async (req, res, next) => {
       const user = await decodeToken(token);
       req.user = user;
 
-      if (req.user?.isloggedin) {
+      if (req.user?.isLoggedin) {
         next();
       } else {
+        // console.log(req.user)
         res.status(401).json({
           message: "please login",
         });
